@@ -1,7 +1,5 @@
 package com.barbosajacson.workshopmongo.dto;
-
 import com.barbosajacson.workshopmongo.domain.User;
-
 import java.io.Serializable;
 
 public class UserDTO implements Serializable {
