@@ -47,4 +47,18 @@ public class UserResources {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
+        // 1. Converte o DTO que veio da requisição para a entidade User
+        User obj = service.fromDTO(objDto);
+
+        // 2. Garante que o objeto terá o ID que veio na URL da requisição
+        obj.setId(id);
+
+        // 3. Chama o serviço para realizar a atualização no banco
+        obj = service.update(obj);
+
+        // 4. Retorna uma resposta vazia (204 No Content) confirmando o sucesso
+        return ResponseEntity.noContent().build();
+    }
 }
