@@ -1,5 +1,6 @@
 package com.barbosajacson.workshopmongo.services;
 import com.barbosajacson.workshopmongo.domain.User;
+import com.barbosajacson.workshopmongo.dto.UserDTO;
 import com.barbosajacson.workshopmongo.repository.UserRepository;
 import com.barbosajacson.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class UserService {
         // O .orElseThrow já trata o erro caso o usuário não exista
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não Encontrado"));
     }
+
+    public User insert(User obj){
+        return repo.insert(obj);
+
+    }
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+    }
+
 }
 
 
