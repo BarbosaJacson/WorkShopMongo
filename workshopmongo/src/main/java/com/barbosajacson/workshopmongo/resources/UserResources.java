@@ -1,4 +1,5 @@
 package com.barbosajacson.workshopmongo.resources;
+import com.barbosajacson.workshopmongo.domain.Post;
 import com.barbosajacson.workshopmongo.domain.User;
 import com.barbosajacson.workshopmongo.dto.UserDTO;
 import com.barbosajacson.workshopmongo.services.UserService;
@@ -60,5 +61,10 @@ public class UserResources {
 
         // 4. Retorna uma resposta vazia (204 No Content) confirmando o sucesso
         return ResponseEntity.noContent().build();
+    }
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
